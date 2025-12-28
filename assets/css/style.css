@@ -78,6 +78,76 @@ a:hover {
 }
 
 /* ========================================
+   Hero Section
+   ======================================== */
+
+.hero-section {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--color-white);
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+/* 首頁 Hero */
+.hero-home {
+  background-image: url('../images/hero_home.jpg');
+}
+
+/* 分類專頁 Hero */
+.hero-cat-a {
+  background-image: url('../images/hero_cat_a.jpg');
+  height: 400px;
+}
+
+.hero-cat-b {
+  background-image: url('../images/hero_cat_b.jpg');
+  height: 400px;
+}
+
+.hero-cat-c {
+  background-image: url('../images/hero_cat_c.jpg');
+  height: 400px;
+}
+
+/* ========================================
    頁頭與導航
    ======================================== */
 
@@ -322,17 +392,21 @@ nav a:hover {
    分類專頁 - 頁面頂部
    ======================================== */
 
-.category-page-banner {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-  margin-bottom: 2rem;
-}
-
 .category-page-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 2rem 0 3rem 0;
+  padding: 0 2rem;
+}
+
+.category-page-title h1 {
+  color: var(--color-white);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  margin-bottom: 0.5rem;
+}
+
+.category-page-title p {
+  color: var(--color-white);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
 /* ========================================
@@ -400,8 +474,22 @@ footer a:hover {
     font-size: 0.9rem;
   }
 
-  .category-page-banner {
-    height: 200px;
+  .hero-section {
+    height: 350px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-cat-a,
+  .hero-cat-b,
+  .hero-cat-c {
+    height: 300px;
   }
 }
 
@@ -467,9 +555,30 @@ footer a:hover {
     padding: 1.5rem 0;
   }
 
-  .category-page-banner {
-    height: 150px;
-    margin-bottom: 1rem;
+  .hero-section {
+    height: 250px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-content {
+    padding: 1rem;
+  }
+
+  .hero-cat-a,
+  .hero-cat-b,
+  .hero-cat-c {
+    height: 200px;
+  }
+
+  .category-page-title {
+    margin: 1rem 0 2rem 0;
   }
 
   footer {
