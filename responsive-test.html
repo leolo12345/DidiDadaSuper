@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>響應式設計測試 - DIDI DADA 超級商城</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .test-container {
+      padding: 2rem;
+      background: white;
+      margin: 2rem auto;
+      max-width: 1400px;
+    }
+
+    .resolution-info {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #4ECDC4;
+    }
+
+    .resolution-info h2 {
+      margin-bottom: 1rem;
+      color: #333;
+      text-align: left;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .info-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4ECDC4;
+    }
+
+    .breakpoint-indicator {
+      background: linear-gradient(135deg, #FF6B9D, #9B59B6);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .test-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .test-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .test-card h3 {
+      color: #FF6B9D;
+      margin-bottom: 0.5rem;
+    }
+
+    .breakpoint-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .breakpoint-list li {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 3px solid #4ECDC4;
+    }
+
+    .breakpoint-list li.active {
+      background: #4ECDC4;
+      color: white;
+      border-left-color: #FF6B9D;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: #4ECDC4;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: #FF6B9D;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1 style="text-align: center; color: #333;">響應式設計測試頁面</h1>
+    
+    <div class="breakpoint-indicator" id="breakpoint">
+      正在載入斷點資訊...
+    </div>
+
+    <div class="resolution-info">
+      <h2>目前螢幕資訊</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">視窗寬度</div>
+          <div class="info-value" id="window-width">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">視窗高度</div>
+          <div class="info-value" id="window-height">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">螢幕解析度</div>
+          <div class="info-value" id="screen-resolution">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">裝置像素比</div>
+          <div class="info-value" id="pixel-ratio">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">字體大小</div>
+          <div class="info-value" id="font-size">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">容器寬度</div>
+          <div class="info-value" id="container-width">-</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-card">
+        <h3>支援的解析度</h3>
+        <ul class="breakpoint-list">
+          <li id="bp-4k">4K 超高清 (2560px+)</li>
+          <li id="bp-fhd">Full HD (1920px - 2559px)</li>
+          <li id="bp-hd">HD (1366px - 1919px)</li>
+          <li id="bp-laptop">筆電 (1024px - 1365px)</li>
+          <li id="bp-tablet">平板 (768px - 1023px)</li>
+          <li id="bp-mobile-l">大型手機 (481px - 767px)</li>
+          <li id="bp-mobile">手機 (480px 以下)</li>
+        </ul>
+      </div>
+
+      <div class="test-card">
+        <h3>響應式特性</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li>✓ 流式布局（Fluid Layout）</li>
+          <li>✓ 彈性網格（Flexible Grid）</li>
+          <li>✓ 相對字體大小（rem/em）</li>
+          <li>✓ 媒體查詢（Media Queries）</li>
+          <li>✓ 自適應圖片（Responsive Images）</li>
+          <li>✓ clamp() 動態縮放</li>
+        </ul>
+      </div>
+
+      <div class="test-card">
+        <h3>測試項目</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li>✓ Hero Section 高度</li>
+          <li>✓ 容器最大寬度</li>
+          <li>✓ 網格欄位數量</li>
+          <li>✓ 字體大小縮放</li>
+          <li>✓ 間距與留白</li>
+          <li>✓ 導航列布局</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="back-link">← 返回首頁</a>
+    </div>
+  </div>
+
+  <script>
+    function updateResolutionInfo() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
+      const pixelRatio = window.devicePixelRatio || 1;
+      const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const container = document.querySelector('.test-container');
+      const containerWidth = container ? container.offsetWidth : 0;
+
+      // 更新數值
+      document.getElementById('window-width').textContent = width + 'px';
+      document.getElementById('window-height').textContent = height + 'px';
+      document.getElementById('screen-resolution').textContent = screenWidth + ' × ' + screenHeight;
+      document.getElementById('pixel-ratio').textContent = pixelRatio.toFixed(2);
+      document.getElementById('font-size').textContent = fontSize.toFixed(1) + 'px';
+      document.getElementById('container-width').textContent = containerWidth + 'px';
+
+      // 判斷斷點
+      let breakpoint = '';
+      let activeId = '';
+
+      if (width >= 2560) {
+        breakpoint = '4K 超高清 (2560px+)';
+        activeId = 'bp-4k';
+      } else if (width >= 1920) {
+        breakpoint = 'Full HD 大型桌面 (1920px - 2559px) - 預設基準';
+        activeId = 'bp-fhd';
+      } else if (width >= 1366) {
+        breakpoint = 'HD 中型桌面 (1366px - 1919px)';
+        activeId = 'bp-hd';
+      } else if (width >= 1024) {
+        breakpoint = '小型桌面/大型平板 (1024px - 1365px)';
+        activeId = 'bp-laptop';
+      } else if (width >= 768) {
+        breakpoint = '平板 (768px - 1023px)';
+        activeId = 'bp-tablet';
+      } else if (width >= 481) {
+        breakpoint = '大型手機 (481px - 767px)';
+        activeId = 'bp-mobile-l';
+      } else {
+        breakpoint = '手機 (480px 以下)';
+        activeId = 'bp-mobile';
+      }
+
+      document.getElementById('breakpoint').textContent = '目前斷點：' + breakpoint;
+
+      // 高亮當前斷點
+      document.querySelectorAll('.breakpoint-list li').forEach(li => {
+        li.classList.remove('active');
+      });
+      if (activeId) {
+        document.getElementById(activeId).classList.add('active');
+      }
+    }
+
+    // 初始載入
+    updateResolutionInfo();
+
+    // 視窗大小改變時更新
+    window.addEventListener('resize', updateResolutionInfo);
+
+    // 每秒更新一次（用於檢測裝置旋轉等）
+    setInterval(updateResolutionInfo, 1000);
+  </script>
+</body>
+</html>

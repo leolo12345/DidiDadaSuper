@@ -25,44 +25,77 @@
   --border-radius: 12px;
 }
 
-/* 基礎樣式 */
-html, body {
+/* 基礎樣式 - 100% 高度與平滑滾動 */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1366px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--color-white);
   color: var(--color-text);
   line-height: 1.6;
+  min-height: 100%;
 }
 
 body {
   background-color: var(--color-light-gray);
 }
 
-/* 容器 */
+/* 容器 - 以 1920x1080 為基準 */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
+  width: 100%;
 }
 
-/* 標題樣式 */
+/* 流式布局容器 */
+.fluid-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 2rem;
+}
+
+/* 標題樣式 - 使用相對單位 */
 h1, h2, h3 {
   color: var(--color-dark-gray);
   font-weight: 600;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 1.5rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: clamp(1.75rem, 3.5vw, 2rem);
   margin-bottom: 2rem;
   text-align: center;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   margin-bottom: 0.75rem;
 }
 
@@ -450,10 +483,96 @@ footer a:hover {
 }
 
 /* ========================================
-   響應式設計 - 平板（768px 以下）
+   響應式設計 - 完整斷點系統
+   基準：1920x1080 (Full HD)
    ======================================== */
 
-@media (max-width: 768px) {
+/* 4K 超高清 (2560px+) */
+@media (min-width: 2560px) {
+  .container {
+    max-width: 1800px;
+  }
+
+  .hero-section {
+    height: 600px;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* 大型桌面 (1920px - 2559px) - 預設基準 */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .hero-section {
+    height: 500px;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* 中型桌面 (1366px - 1919px) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .hero-section {
+    height: 450px;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+}
+
+/* 小型桌面/大型平板 (1024px - 1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .hero-section {
+    height: 400px;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 平板 (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -500,10 +619,42 @@ footer a:hover {
   }
 }
 
-/* ========================================
-   響應式設計 - 手機（480px 以下）
-   ======================================== */
+/* 小型平板/大型手機 (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .container {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
 
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    margin-left: 0.75rem;
+  }
+}
+
+/* 手機 (480px 以下) */
 @media (max-width: 480px) {
   .categories-grid {
     grid-template-columns: 1fr;
